@@ -42,6 +42,10 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/stb_image)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/rapidjson)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/box2d)
 
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Source/Externals/steamsdk/CMakeLists.txt")
+    add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/steamsdk)
+endif()
+
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/CoreModule)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/AssetModule)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/AudioModule)
@@ -49,7 +53,10 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/InputModule)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/ECS)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Renderer)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Physics)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Networking)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Launcher)
+
+
 
 set_property(
     DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

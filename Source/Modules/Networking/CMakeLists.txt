@@ -1,14 +1,13 @@
 include("${CMAKE_SOURCE_DIR}/CMake/common.cmake")
 
-SetProjectKey(Renderer)
-GenerateCoreApiFile(RENDERER_API)
+SetProjectKey(Networking)
+GenerateCoreApiFile(NETWORKING_API)
 
 CreateSharedProject()
 
-target_link_libraries(Renderer PUBLIC 
+target_link_libraries(Networking PUBLIC 
     CoreModule 
-    OpenGL
-    stb_image
+    steamsdk
 )
 
 SetFolder("Engine/Modules")

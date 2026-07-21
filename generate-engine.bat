@@ -5,6 +5,7 @@ title Engine Generation
 setlocal
 
 echo ==== Begun: Generating project ====
+echo.
 
 cmake -G "Visual Studio 18 2026"                 ^
     -T host=x64                                  ^
@@ -13,26 +14,20 @@ cmake -G "Visual Studio 18 2026"                 ^
     -DBUILD_EDITOR=ON 
 
 
+echo.
+call Tools/Setup/copy-engine-dlls.bat
+call Tools/Setup/copy-etc-files.bat
 
+echo === Begun: Generating slnx file ===
+cd Tools/Setup
 
-@REM echo === Begun: Generating engine project ===
-@REM echo.
+set CUR_DIR=%~dp0
+MoveSLN.exe %CUR_DIR%/Temp/Binary/ ../.. Eclipsed-Engine
+echo === Completed: Completed generating slnx file ===
 
-@REM call Tools/Setup/generate-engine-cmake.bat
-@REM echo.
-@REM call Tools/Setup/copy-engine-dlls.bat
-@REM call Tools/Setup/copy-etc-files.bat
+echo.
+echo === Completed: Generating engine project ===
 
-@REM echo === Begun: Generating slnx file ===
-@REM cd Tools/Setup
-
-@REM set CUR_DIR=%~dp0
-@REM MoveSLN.exe %CUR_DIR%/Temp/Binary/ ../.. Eclipsed-Engine
-@REM echo === Completed: Completed generating slnx file ===
-
-@REM echo.
-@REM echo === Completed: Generating engine project ===
-
-@REM endlocal 
+endlocal 
 
 pause
