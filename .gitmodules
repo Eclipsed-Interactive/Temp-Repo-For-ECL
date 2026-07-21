@@ -1,5 +1,6 @@
 [submodule "Source/Externals/steamsdk"]
 	path = Source/Externals/steamsdk
 	url = https://github.com/Eclipsed-Interactive/steamsdk.git
+	branch = main
 [submodule "private-submodule"]
 	branch = main
