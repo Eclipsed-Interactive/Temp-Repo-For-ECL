@@ -2,11 +2,10 @@
 
 #include <functional>
 
-#include "EclipsedEngine/Replication/ReplicationManager.h"
 #include "steamsdk/isteamnetworkingsockets.h"
 #include "steamsdk/isteamnetworkingutils.h"
 
-#include "NetworkEngine/Shared/Message.h"
+#include "Networking/Shared/Message.h"
 
 #include <iostream>
 
@@ -85,8 +84,8 @@ namespace Eclipse
     {
         switch (aInfo->m_info.m_eState)
         {
-        case k_ESteamNetworkingConnectionState_Connected:
-            Replication::ReplicationManager::SteamNetorkingReady();
+        case k_ESteamNetworkingConnectionState_Connected: // Add replication to the engine as a module
+            //Replication::ReplicationManager::SteamNetorkingReady();
             break;
 
         case k_ESteamNetworkingConnectionState_ProblemDetectedLocally:

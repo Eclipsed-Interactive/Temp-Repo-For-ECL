@@ -1,10 +1,10 @@
-#include "GarantiedMessageHandler.h"
+#include "Networking/Shared/GarantiedMessageHandler.h"
 
-#include "NetworkEngine/Client/Client.h"
-#include "NetworkEngine/Server/Server.h"
+#include "Networking/Client/Client.h"
+#include "Networking/Server/Server.h"
 
-#include "CoreEngine/MainSingleton.h"
-#include "CoreEngine/Timer.h"
+#include "CoreModule/MainSingleton.h"
+#include "CoreModule/Timer.h"
 
 namespace Eclipse
 {

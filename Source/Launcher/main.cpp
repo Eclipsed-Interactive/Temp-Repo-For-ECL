@@ -5,6 +5,7 @@
 #include "ECS/ComponentManager.h"
 #include "Renderer/OpenGL/OpenGLGraphicsAPI.h"
 #include "Physics/PhysicsEngine.h"
+#include "Networking/Shared/General.h"
 
 #include <iostream>
 
@@ -18,9 +19,11 @@ int main()
 
 	Eclipse::ComponentManager::Init();
 
-	 Eclipse::GraphicsEngine::InitSpecifiedAPI<Eclipse::OpenGLGraphicsEngine>();
-	 Eclipse::OpenGLGraphicsEngine* d = static_cast<Eclipse::OpenGLGraphicsEngine*>(Eclipse::GraphicsEngine::Get());
+	Eclipse::GraphicsEngine::InitSpecifiedAPI<Eclipse::OpenGLGraphicsEngine>();
+	Eclipse::OpenGLGraphicsEngine* d = static_cast<Eclipse::OpenGLGraphicsEngine*>(Eclipse::GraphicsEngine::Get());
 
-	 b2DebugDraw w;
-	 Eclipse::PhysicsEngine::Init(0, { 0,0 }, w);
+	b2DebugDraw w;
+	Eclipse::PhysicsEngine::Init(0, { 0,0 }, w);
+
+	Eclipse::General::GetPublicIPAdress();
 }

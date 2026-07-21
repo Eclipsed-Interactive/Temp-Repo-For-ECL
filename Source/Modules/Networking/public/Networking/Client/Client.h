@@ -5,9 +5,9 @@
 
 #include "asio/asio.hpp"
 
-#include "NetworkEngine/Shared/GarantiedMessageHandler.h"
+#include "Networking/Shared/GarantiedMessageHandler.h"
 
-#include "NetworkEngine/Shared/Message.h"
+#include "Networking/Shared/Message.h"
 
 
 namespace Eclipse

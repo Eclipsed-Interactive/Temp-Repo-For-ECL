@@ -1,6 +1,6 @@
-#include "Client.h"
+#include "Networking/Client/Client.h"
 
-#include "NetworkEngine/Shared/Message.h"
+#include "Networking/Shared/Message.h"
 
 namespace Eclipse
 {

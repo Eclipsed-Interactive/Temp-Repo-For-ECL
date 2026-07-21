@@ -41,9 +41,11 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/FreeType)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/stb_image)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/rapidjson)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/box2d)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/asio)
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Source/Externals/steamsdk/CMakeLists.txt")
     add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/steamsdk)
+    add_compile_definitions(STEAMSDK_PRESENT)
 endif()
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/CoreModule)
@@ -62,9 +64,6 @@ set_property(
     DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     PROPERTY VS_STARTUP_PROJECT Launcher
 )
-
-
-
 
 
 # set_property(GLOBAL PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Bin")
@@ -117,7 +116,7 @@ set_property(
 # add_subdirectory(Source/Engine/Modules/Renderer)
 
 # if(${ENABLE_NETWORKING})
-#     add_subdirectory(Source/Engine/Modules/NetworkEngine)
+#     add_subdirectory(Source/Engine/Modules/Networking)
 # endif()
 
 # add_subdirectory(Source/Engine/Modules/PhysicsEngine)

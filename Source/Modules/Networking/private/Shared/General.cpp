@@ -1,4 +1,4 @@
-#include "General.h"
+#include "Shared/General.h"
 
 #include <windows.h>
 #include <wininet.h>

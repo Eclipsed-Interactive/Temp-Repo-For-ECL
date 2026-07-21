@@ -2,10 +2,10 @@
 
 #include <thread>
 
-#include "CoreEngine/MainSingleton.h"
+#include "CoreModule/MainSingleton.h"
 
-#include "NetworkEngine/Shared/Message.h"
-#include "NetworkEngine/Shared/GarantiedMessageHandler.h"
+#include "Networking/Shared/Message.h"
+#include "Networking/Shared/GarantiedMessageHandler.h"
 
 #include "asio/asio.hpp"
 
@@ -85,7 +85,7 @@ namespace Eclipse
 			// {
 			// 	int y = 0;
 			// }
-			
+
 
 			HandleRecieve(message);
 
@@ -101,12 +101,12 @@ namespace Eclipse
 					message.MetaData.SentGarantied = false;
 					Send(&message, 8, recieveEndpoint);
 					message.MetaData.SentGarantied = true;
-					
+
 					for (auto& endpoint : endpoints)
 					{
 						if (recieveEndpoint.port() == endpoint.port())
 							continue;
-						
+
 						message.MetaData.messageID = ++message.messageIDIncrementor;
 
 						SendGarantied(message, endpoint);
@@ -132,7 +132,7 @@ namespace Eclipse
 
 		void SendManager()
 		{
-			
+
 		}
 
 		void Send(const void* value, size_t byteSize, const udp::endpoint& endpoint)

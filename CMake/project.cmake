@@ -51,6 +51,8 @@ function(CreateProject TYPE)
     )
 
 
+
+
     add_library(${TARGET_NAME} ${TYPE})
 
     target_sources(${TARGET_NAME}
@@ -84,6 +86,10 @@ function(CreateProject TYPE)
         PUBLIC
             "${ROOT}"
             "${ROOT}/public"
+    )
+
+    set_target_properties(${TARGET_NAME} PROPERTIES
+        VS_INTELLECTUAL_PROPERTY "..."
     )
     
 
@@ -156,17 +162,17 @@ endfunction()
 function(SetModuleOutputPaths)
 # if(BUILD_EDITOR)
 set_target_properties(${TARGET_NAME} PROPERTIES
-            ARCHIVE_OUTPUT_DIRECTORY                "${CMAKE_SOURCE_DIR}/Bin"
-            ARCHIVE_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_SOURCE_DIR}/Bin"
-            ARCHIVE_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_SOURCE_DIR}/Bin"
-            ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_SOURCE_DIR}/Bin"
-            ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_SOURCE_DIR}/Bin"
+            ARCHIVE_OUTPUT_DIRECTORY                "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            ARCHIVE_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            ARCHIVE_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
 
-            LIBRARY_OUTPUT_DIRECTORY                "${CMAKE_SOURCE_DIR}/Bin"
-            LIBRARY_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_SOURCE_DIR}/Bin"
-            LIBRARY_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_SOURCE_DIR}/Bin"
-            LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_SOURCE_DIR}/Bin"
-            LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_SOURCE_DIR}/Bin"
+            LIBRARY_OUTPUT_DIRECTORY                "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            LIBRARY_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            LIBRARY_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
+            LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_SOURCE_DIR}/Bin/Libs/$<CONFIG>"
 
             RUNTIME_OUTPUT_DIRECTORY                "${CMAKE_SOURCE_DIR}/Bin"
             RUNTIME_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_SOURCE_DIR}/Bin"

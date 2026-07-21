@@ -1,8 +1,12 @@
 #pragma once
 
+#include <string>
+
+#include "Networking.Core.hpp"
+
 namespace Eclipse
 {
-    class General
+    class NETWORKING_API General
     {
     public:
         static std::string GetPublicIPAdress();

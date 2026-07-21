@@ -12,4 +12,5 @@ target_link_libraries(Launcher PRIVATE
     ECS
     Renderer
     Physics
+    Networking
 )

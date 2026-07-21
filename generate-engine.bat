@@ -7,11 +7,11 @@ setlocal
 echo ==== Begun: Generating project ====
 echo.
 
-cmake -G "Visual Studio 18 2026"                 ^
-    -T host=x64                                  ^
-    -S .                                        ^
-    -B Temp/Binary                              ^
-    -DBUILD_EDITOR=ON 
+cmake -G "Visual Studio 18 2026" ^
+    -T host=x64 ^
+    -S . ^
+    -B Temp/Binary ^
+    -DBUILD_EDITOR=ON
 
 
 echo.

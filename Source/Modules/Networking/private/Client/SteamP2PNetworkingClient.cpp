@@ -1,4 +1,4 @@
-#include "SteamP2PNetworkingClient.h"
+#include "Networking/Client/SteamP2PNetworkingClient.h"
 
 namespace Eclipse
 {
