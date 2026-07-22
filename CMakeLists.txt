@@ -42,6 +42,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/stb_image)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/rapidjson)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/box2d)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/asio)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/FontAwesome)
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Source/Externals/steamsdk/CMakeLists.txt")
     add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/steamsdk)
@@ -56,6 +57,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/ECS)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Renderer)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Physics)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Networking)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/EclipsedEngine)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Launcher)
 
 

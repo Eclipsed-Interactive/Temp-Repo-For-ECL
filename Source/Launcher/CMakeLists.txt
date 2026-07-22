@@ -5,12 +5,5 @@ SetProjectKey(Launcher)
 GenerateExecutable()
 
 target_link_libraries(Launcher PRIVATE 
-    CoreModule  
-    InputModule  
-    AudioModule  
-    AssetModule  
-    ECS
-    Renderer
-    Physics
-    Networking
+    EclipsedEngine
 )

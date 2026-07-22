@@ -7,9 +7,11 @@
 
 #include "CoreModule/Math/Vector/Vector2.h"
 
+#include "CoreModule.Core.hpp"
+
 namespace Eclipse::Configs
 {
-	class Config
+	class CORE_API Config
 	{
 	public:
 		template<typename T>

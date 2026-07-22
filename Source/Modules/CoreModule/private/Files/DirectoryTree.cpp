@@ -1,26 +1,44 @@
-#include "pch.h"
-
 #include "CoreModule/Files/DirectoryTree.h"
 
 namespace Eclipse::Utilities
 {
 	namespace fs = std::filesystem;
 
-	DirectoryTree::DirectoryTree(const std::filesystem::path& path) : relativePath(path)
+	DirectoryTree::DirectoryTree(const std::filesystem::path& path)
+		: relativePath(path)
 	{
 		Internal_SetupRoot(path);
 		Internal_BuildChildren(root);
 	}
 
+	DirectoryTree::~DirectoryTree()
+	{
+		Internal_Clear(root);
+	}
+
 	void DirectoryTree::Reload()
 	{
+		Internal_Clear(root);
+
 		Internal_SetupRoot(relativePath);
 		Internal_BuildChildren(root);
 	}
 
+	void DirectoryTree::Internal_Clear(FileNode* node)
+	{
+		if (!node)
+			return;
+
+		for (FileNode* child : node->children)
+		{
+			Internal_Clear(child);
+		}
+
+		delete node;
+	}
+
 	void DirectoryTree::Insert(const char* path)
 	{
-
 	}
 
 	void DirectoryTree::Remove(const char* path)
@@ -34,40 +52,41 @@ namespace Eclipse::Utilities
 
 	void DirectoryTree::Internal_SetupRoot(const std::filesystem::path& path)
 	{
-		root = std::make_unique<FileNode>();
-		root->info = Utilities::FileInfo::GetFileInfo(path);
-		root->isDirectory = root->info.type == Utilities::FileInfo::FileStatus_Directory;
+		root = new FileNode();
+
+		root->info = FileInfo::GetFileInfo(path);
+		root->isDirectory = root->info.type == FileInfo::FileType_Directory;
 	}
 
-	void DirectoryTree::Internal_BuildChildren(std::unique_ptr<FileNode>& node) const
+	void DirectoryTree::Internal_BuildChildren(FileNode* node)
 	{
-		namespace fs = std::filesystem;
+		if (!node)
+			return;
 
 		for (const fs::directory_entry& entry : fs::directory_iterator(node->info.filePath))
 		{
-			std::string extension = entry.path().extension().string();
-			if (extension == ".meta") continue;
+			if (entry.path().extension() == ".meta")
+				continue;
 
-			std::unique_ptr<FileNode> child = std::make_unique<FileNode>();
-			child->info = Utilities::FileInfo::GetFileInfo(entry);
+			FileNode* child = new FileNode();
+
+			child->info = FileInfo::GetFileInfo(entry);
 			child->info.SetRelativePath(relativePath);
 
-			if (entry.is_directory())
-			{
-				child->isDirectory = true;
-			}
-
+			child->isDirectory = entry.is_directory();
 
 			if (child->isDirectory)
 			{
 				Internal_BuildChildren(child);
 			}
 
-			node->children.push_back(std::move(child));
+			node->children.push_back(child);
 		}
 
-		std::sort(node->children.begin(), node->children.end(),
-			[](const std::unique_ptr<FileNode>& a, const std::unique_ptr<FileNode>& b)
+		std::sort(
+			node->children.begin(),
+			node->children.end(),
+			[](const FileNode* a, const FileNode* b)
 			{
 				if (a->isDirectory != b->isDirectory)
 					return a->isDirectory > b->isDirectory;
@@ -79,17 +98,19 @@ namespace Eclipse::Utilities
 			});
 	}
 
-	FileNode* DirectoryTree::Internal_GetNode(const std::filesystem::path& path, std::unique_ptr<FileNode>& node)
+	FileNode* DirectoryTree::Internal_GetNode(
+		const std::filesystem::path& path,
+		FileNode* node)
 	{
-		std::filesystem::path lhs = node->info.filePath;
-		std::filesystem::path rhs = path;
+		if (!node)
+			return nullptr;
 
-		if (std::filesystem::equivalent(lhs, rhs))
-			return node.get();
+		if (std::filesystem::equivalent(node->info.filePath, path))
+			return node;
 
-		for (auto& child : node->children)
+		for (FileNode* child : node->children)
 		{
-			if (auto result = Internal_GetNode(path, child))
+			if (FileNode* result = Internal_GetNode(path, child))
 				return result;
 		}
 
@@ -98,12 +119,12 @@ namespace Eclipse::Utilities
 
 	FileNode* DirectoryTree::GetRoot()
 	{
-		return root.get();
+		return root;
 	}
-	
+
 	const FileNode* DirectoryTree::GetRoot() const
 	{
-		return root.get();
+		return root;
 	}
 
 	FileNode* DirectoryTree::GetNode(const std::filesystem::path& path)

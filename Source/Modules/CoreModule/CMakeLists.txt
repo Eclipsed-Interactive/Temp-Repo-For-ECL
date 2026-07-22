@@ -9,6 +9,7 @@ target_link_libraries(CoreModule
     PUBLIC
         cereal
         rapidjson
+        FontAwesome
 )
 
 SetFolder("Engine/Modules")

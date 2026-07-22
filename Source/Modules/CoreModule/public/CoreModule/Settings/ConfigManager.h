@@ -6,10 +6,11 @@
 #include <unordered_map>
 #include <filesystem>
 
+#include "CoreModule.Core.hpp"
 
 namespace Eclipse::Configs
 {
-	class ConfigManager
+	class CORE_API ConfigManager
 	{
 	public:
 		static void Init();

@@ -1,0 +1,21 @@
+#pragma once
+#ifdef ECLIPSED_EDITOR
+
+#include "EclipsedEngine/Editor/EditorContext.h"
+#include "CoreModule/Macros/defines.h"
+
+namespace Eclipse::Editor
+{
+    class ECLIPSED_API EditorApplication
+    {
+    public:
+        void Init(const char* aPath);
+        int Update();
+
+        void Shutdown();
+
+    private:
+        EditorContexts myContext;
+    };
+}
+#endif

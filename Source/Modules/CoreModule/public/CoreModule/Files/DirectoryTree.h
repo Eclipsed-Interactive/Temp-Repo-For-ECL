@@ -1,45 +1,50 @@
 #pragma once
 
 #include <filesystem>
+#include <vector>
+
 #include "FileInfo.h"
+#include "CoreModule.Core.hpp"
 
 namespace Eclipse::Utilities
 {
-	struct FileNode 
+	struct CORE_API FileNode
 	{
 		FileInfo info;
-		std::vector<std::unique_ptr<FileNode>> children;
+		std::vector<FileNode*> children;
+
 		bool isDirectory = false;
 		bool isOpen = false;
 	};
 
-	class DirectoryTree final
+	class CORE_API DirectoryTree final
 	{
 	public:
 		DirectoryTree() = default;
 		DirectoryTree(const std::filesystem::path& path);
+		~DirectoryTree();
 
 		void Reload();
 
 	private:
+		void Internal_Clear(FileNode* node);
 		void Internal_SetupRoot(const std::filesystem::path& path);
-		void Internal_BuildChildren(std::unique_ptr<FileNode>& node) const;
+		void Internal_BuildChildren(FileNode* node);
 
-		FileNode* Internal_GetNode(const std::filesystem::path& path, std::unique_ptr<FileNode>& node);
+		FileNode* Internal_GetNode(const std::filesystem::path& path, FileNode* node);
 
 	public:
-		FileNode* GetRoot();     
+		FileNode* GetRoot();
 		const FileNode* GetRoot() const;
 
 		FileNode* GetNode(const std::filesystem::path& path);
 
-	public:
 		void Insert(const char* path);
 		void Remove(const char* path);
 		FileNode* Find(const char* path);
 
 	private:
-		std::unique_ptr<FileNode> root = nullptr;
+		FileNode* root = nullptr;
 		std::filesystem::path relativePath;
 	};
 }
