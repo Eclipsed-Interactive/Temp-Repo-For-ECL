@@ -7,7 +7,7 @@ function(GenerateExecutable)
         "${ROOT}/*.*"
     )
 
-    add_executable(${TARGET_NAME} ${SOURCES})
+    add_executable(${TARGET_NAME} WIN32 ${SOURCES})
 
     target_sources(${TARGET_NAME}
         PRIVATE
@@ -22,6 +22,10 @@ function(GenerateExecutable)
     target_include_directories(${TARGET_NAME}
         PRIVATE
             "${ROOT}"
+    )
+
+    set_target_properties(${TARGET_NAME} PROPERTIES
+        VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Bin"
     )
 
     set_target_properties(${TARGET_NAME} PROPERTIES

@@ -3,10 +3,10 @@ include("${CMAKE_SOURCE_DIR}/CMake/common.cmake")
 SetProjectKey(Renderer)
 GenerateCoreApiFile(RENDERER_API)
 
-CreateSharedProject()
+CreateStaticProject()
 
 target_link_libraries(Renderer PUBLIC 
-    CoreModule 
+    Core
     OpenGL
     stb_image
 )

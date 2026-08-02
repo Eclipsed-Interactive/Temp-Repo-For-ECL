@@ -7,12 +7,15 @@ CreateSharedProject()
 
 target_link_libraries(EclipsedEngine
     PUBLIC
-        CoreModule  
-        InputModule  
-        AudioModule  
-        AssetModule  
+        Core  
+        Input  
+        Audio  
+        Assets  
         ECS
         Renderer
         Physics
         Networking
+
+    PRIVATE
+        ImGui
 )

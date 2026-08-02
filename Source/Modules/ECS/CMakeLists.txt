@@ -3,10 +3,10 @@ include("${CMAKE_SOURCE_DIR}/CMake/common.cmake")
 SetProjectKey(ECS)
 GenerateCoreApiFile(ECS_API)
 
-CreateSharedProject()
+CreateStaticProject()
 
 target_link_libraries(ECS PUBLIC 
-    CoreModule 
+    Core
 )
 
 SetFolder("Engine/Modules")

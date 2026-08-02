@@ -1,29 +1,70 @@
+#include "EclipsedEngine/Editor/EditorApplication.h"
+#include "EclipsedEngine/EclipsedRuntime.h"
+#include <windows.h>
 
-#include "InputModule/Input.h"
-#include "AudioModule/AudioManager.h"
-#include "AssetModule/AssetManager.h"
-#include "ECS/ComponentManager.h"
-#include "Renderer/OpenGL/OpenGLGraphicsAPI.h"
-#include "Physics/PhysicsEngine.h"
-#include "Networking/Shared/General.h"
+#include "Core/Logger/DebugLogger.h"
+#include "Core/PathManager.h"
 
-#include <iostream>
+#include <filesystem>
+#include <string>
+#include <shobjidl.h>
 
-int main()
+#include <fstream>
+
+
+#ifdef _WIN32
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#else
+int main(int argc, char* argv[])
+#endif
 {
-	std::cout << "hejsan du där!" << std::endl;
+    //HWND hwnd = GetConsoleWindow();
+    //ShowWindow(hwnd, SW_HIDE);
 
-	Eclipse::Core::Input::GetAny();
-	Eclipse::AudioManager::GetBus(Eclipse::AudioBus::Ambient);
-	Eclipse::Assets::AssetManager::EndFrame();
+    std::string projectPath = "";
+    //if (argc > 1) // Engine opened with project path.
+    //{
+    //    std::ofstream file(".ini");
+    //    file.write(argv[1], strlen(argv[1]));
 
-	Eclipse::ComponentManager::Init();
+    //    projectPath = argv[1];
+    //}
+    //else // Engine tries to use the stored path in the .ini file.
+    {
+        if (std::filesystem::exists(".ini"))
+        {
+            std::ifstream file(".ini");
 
-	Eclipse::GraphicsEngine::InitSpecifiedAPI<Eclipse::OpenGLGraphicsEngine>();
-	Eclipse::OpenGLGraphicsEngine* d = static_cast<Eclipse::OpenGLGraphicsEngine*>(Eclipse::GraphicsEngine::Get());
+            file.seekg(0, std::ios::end);
+            std::streamsize size = file.tellg();
+            file.seekg(0, std::ios::beg);
 
-	b2DebugDraw w;
-	Eclipse::PhysicsEngine::Init(0, { 0,0 }, w);
+            projectPath.resize(size);
+            file.read(projectPath.data(), size);
+        }
+    }
 
-	Eclipse::General::GetPublicIPAdress();
+#ifdef ECL_EDITOR
+    Eclipse::Editor::EditorApplication editorApplication;
+
+    editorApplication.Init(projectPath.c_str());
+
+    while (editorApplication.Update());
+
+    editorApplication.Shutdown();
+#else 
+    Eclipse::EclipsedRuntime eclipseRuntime = {};
+
+    eclipseRuntime.StartEngine();
+    eclipseRuntime.LateStart();
+
+    while (eclipseRuntime.BeginFrame()) {
+        eclipseRuntime.Update();
+        eclipseRuntime.UpdateGame();
+        eclipseRuntime.Render();
+        eclipseRuntime.EndFrame();
+    }
+
+    eclipseRuntime.Shutdown();
+#endif
 }

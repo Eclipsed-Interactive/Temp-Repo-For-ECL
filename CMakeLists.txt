@@ -43,16 +43,17 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/rapidjson)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/box2d)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/asio)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/FontAwesome)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/ImGui)
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Source/Externals/steamsdk/CMakeLists.txt")
     add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Externals/steamsdk)
     add_compile_definitions(STEAMSDK_PRESENT)
 endif()
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/CoreModule)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/AssetModule)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/AudioModule)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/InputModule)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Core)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Assets)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Audio)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Input)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/ECS)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Renderer)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Physics)
@@ -111,8 +112,8 @@ set_property(
 
 
 
-# add_subdirectory(Source/Engine/Modules/CoreModule)
-# add_subdirectory(Source/Engine/Modules/AssetModule)
+# add_subdirectory(Source/Engine/Modules/Core)
+# add_subdirectory(Source/Engine/Modules/Assets)
 # add_subdirectory(Source/Engine/Modules/AudioEngine)
 # add_subdirectory(Source/Engine/Modules/EntityEngine)
 # add_subdirectory(Source/Engine/Modules/Renderer)
@@ -126,7 +127,7 @@ set_property(
 # add_subdirectory(Source/Engine/EclipsedEngine)
 
 # add_subdirectory(Source/Launcher)
-# if(ECLIPSED_EDITOR)
+# if(ECL_EDITOR)
 #     add_subdirectory(Source/Hub)
 # endif()
 

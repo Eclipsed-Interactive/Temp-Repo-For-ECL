@@ -11,6 +11,8 @@ function(GenerateCoreApiFile MACRO_NAME)
         "#define ${MACRO_NAME} __declspec(dllexport)\n"
         "#elif ${PROJECT_KEY}_IMPORTS\n"
         "#define ${MACRO_NAME} __declspec(dllimport)\n"
+        "#else\n"
+        "#define  ${MACRO_NAME}\n"
         "#endif"
     )
 endfunction()
@@ -34,42 +36,20 @@ function(CreateProject TYPE)
         "${ROOT}/${TARGET_NAME}.Core.hpp"
     )
 
-    file(GLOB_RECURSE PUBLIC_SOURCES CONFIGURE_DEPENDS
-        "${ROOT}/public/${TARGET_NAME}/*.h"
-        "${ROOT}/public/${TARGET_NAME}/*.hpp"
-        "${ROOT}/public/${TARGET_NAME}/*.inl"
-        "${ROOT}/public/${TARGET_NAME}/*.cpp"
-        "${ROOT}/public/${TARGET_NAME}/*.c"
+    file(GLOB_RECURSE _SOURCES CONFIGURE_DEPENDS
+        "${ROOT}/${TARGET_NAME}/*.h"
+        "${ROOT}/${TARGET_NAME}/*.hpp"
+        "${ROOT}/${TARGET_NAME}/*.inl"
+        "${ROOT}/${TARGET_NAME}/*.cpp"
+        "${ROOT}/${TARGET_NAME}/*.c"
     )
-
-    file(GLOB_RECURSE PRIVATE_SOURCES CONFIGURE_DEPENDS
-        "${ROOT}/private/*.h"
-        "${ROOT}/private/*.hpp"
-        "${ROOT}/private/*.inl"
-        "${ROOT}/private/*.cpp"
-        "${ROOT}/private/*.c"
-    )
-
-
-
 
     add_library(${TARGET_NAME} ${TYPE})
 
     target_sources(${TARGET_NAME}
         PRIVATE
-            ${PRIVATE_SOURCES}
-            ${PUBLIC_SOURCES}
+            ${_SOURCES}
             ${CORE_SOURCES}
-    )
-
-    source_group(
-        TREE "${ROOT}/private"
-        FILES ${PRIVATE_SOURCES}     
-    )
-
-    source_group(
-        TREE "${ROOT}/public/${TARGET_NAME}"
-        FILES ${PUBLIC_SOURCES}     
     )
 
     source_group(
@@ -77,15 +57,17 @@ function(CreateProject TYPE)
         FILES ${CORE_SOURCES}     
     )
 
+    source_group(
+        TREE "${ROOT}/${TARGET_NAME}"
+        FILES ${_SOURCES}     
+    )
+
     target_include_directories(${TARGET_NAME}
         PRIVATE
-            "${ROOT}/public"
-            "${ROOT}/public/${TARGET_NAME}"
-            "${ROOT}/private"
+            "${ROOT}/${TARGET_NAME}"
 
         PUBLIC
             "${ROOT}"
-            "${ROOT}/public"
     )
 
     set_target_properties(${TARGET_NAME} PROPERTIES
