@@ -3,22 +3,19 @@
 #include "Timer.h"
 #include <chrono>
 
-namespace Eclipse
+namespace Eclipse::Core
 {
-    std::chrono::high_resolution_clock::time_point Time::startTime;
-    std::chrono::high_resolution_clock Time::clock;
-    std::chrono::duration<float> Time::duration;
+    Timer::Timer() : duration(0)
+    {
+        Init();
+    }
 
-    float Time::myDeltaTime = 0;
-    float Time::myTotalTime = 0;
-    float Time::myTimeScale = 1;
-
-    void Time::Init()
+    void Timer::Init()
     {
         startTime = clock.now();
     }
 
-    void Time::Update()
+    void Timer::Update()
     {
         duration = clock.now() - startTime;
         float newTotalTime = duration.count();
@@ -27,22 +24,22 @@ namespace Eclipse
         myTotalTime = newTotalTime;
     }
 
-    void Time::SetTimeScale(float timeScale)
+    void Timer::SetTimeScale(float timeScale)
     {
         myTimeScale = timeScale;
     }
 
-    float Time::GetDeltaTime()
+    float Timer::GetDeltaTime()
     {
         return myDeltaTime * myTimeScale;
     }
 
-    float Time::GetTimeScale()
+    float Timer::GetTimeScale()
     {
         return myTimeScale;
     }
 
-    float Time::GetTotalTime()
+    float Timer::GetTotalTime()
     {
         return myTotalTime;
     }

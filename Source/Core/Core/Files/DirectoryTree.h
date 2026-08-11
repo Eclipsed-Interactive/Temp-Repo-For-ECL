@@ -22,7 +22,14 @@ namespace Eclipse::Utilities
 	public:
 		DirectoryTree() = default;
 		DirectoryTree(const std::filesystem::path& path);
+
 		~DirectoryTree();
+
+		DirectoryTree(const DirectoryTree&) = delete;
+		DirectoryTree& operator=(const DirectoryTree&) = delete;
+
+		DirectoryTree(DirectoryTree&& other) noexcept;
+		DirectoryTree& operator=(DirectoryTree&& other) noexcept;
 
 		void Reload();
 
@@ -31,13 +38,13 @@ namespace Eclipse::Utilities
 		void Internal_SetupRoot(const std::filesystem::path& path);
 		void Internal_BuildChildren(FileNode* node);
 
-		FileNode* Internal_GetNode(const std::filesystem::path& path, FileNode* node);
+		const FileNode* Internal_GetNode(const std::filesystem::path& path, const FileNode* node);
 
 	public:
 		FileNode* GetRoot();
 		const FileNode* GetRoot() const;
 
-		FileNode* GetNode(const std::filesystem::path& path);
+		const FileNode* GetNode(const std::filesystem::path& path);
 
 		void Insert(const char* path);
 		void Remove(const char* path);

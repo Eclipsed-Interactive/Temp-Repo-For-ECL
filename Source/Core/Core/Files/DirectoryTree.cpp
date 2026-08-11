@@ -9,11 +9,39 @@ namespace Eclipse::Utilities
 	{
 		Internal_SetupRoot(path);
 		Internal_BuildChildren(root);
+
+		if (root == nullptr)
+		{
+			return;
+		}
 	}
 
 	DirectoryTree::~DirectoryTree()
 	{
 		Internal_Clear(root);
+	}
+
+	DirectoryTree::DirectoryTree(DirectoryTree&& other) noexcept
+	{
+		root = other.root;
+		relativePath = std::move(other.relativePath);
+
+		other.root = nullptr;
+	}
+
+	DirectoryTree& DirectoryTree::operator=(DirectoryTree&& other) noexcept
+	{
+		if (this != &other)
+		{
+			Internal_Clear(root);
+
+			root = other.root;
+			relativePath = std::move(other.relativePath);
+
+			other.root = nullptr;
+		}
+
+		return *this;
 	}
 
 	void DirectoryTree::Reload()
@@ -98,9 +126,9 @@ namespace Eclipse::Utilities
 			});
 	}
 
-	FileNode* DirectoryTree::Internal_GetNode(
+	const FileNode* DirectoryTree::Internal_GetNode(
 		const std::filesystem::path& path,
-		FileNode* node)
+		const FileNode* node)
 	{
 		if (!node)
 			return nullptr;
@@ -110,7 +138,7 @@ namespace Eclipse::Utilities
 
 		for (FileNode* child : node->children)
 		{
-			if (FileNode* result = Internal_GetNode(path, child))
+			if (const FileNode* result = Internal_GetNode(path, child))
 				return result;
 		}
 
@@ -127,7 +155,7 @@ namespace Eclipse::Utilities
 		return root;
 	}
 
-	FileNode* DirectoryTree::GetNode(const std::filesystem::path& path)
+	const FileNode* DirectoryTree::GetNode(const std::filesystem::path& path)
 	{
 		return Internal_GetNode(path, root);
 	}

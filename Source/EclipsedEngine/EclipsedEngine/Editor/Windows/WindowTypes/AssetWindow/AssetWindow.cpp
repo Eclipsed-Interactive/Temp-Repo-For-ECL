@@ -45,9 +45,9 @@ namespace Eclipse::Editor
 
 	void AssetWindow::Update()
 	{
-		//DrawAssetHierachy();
+		DrawAssetHierachy();
 		ImGui::SameLine();
-		//DrawAssetView();
+		DrawAssetView();
 
 		ctxMenu.Draw();
 
@@ -100,14 +100,14 @@ namespace Eclipse::Editor
 		static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_DrawLinesFull | ImGuiTreeNodeFlags_DrawLinesToNodes | ImGuiTreeNodeFlags_DefaultOpen;
 		if (ImGui::TreeNodeEx(ICON_FA_FOLDER " Assets", base_flags))
 		{
-			Utilities::FileNode* projectAssets = dirTree.GetNode(PathManager::GetAssetsPath());
+			const Utilities::FileNode* projectAssets = dirTree.GetNode(PathManager::GetAssetsPath());
 			DrawAssetHierachyEntry(projectAssets);
 			ImGui::TreePop();
 		}
 
 		if (ImGui::TreeNodeEx(ICON_FA_FOLDER " Engine Assets", base_flags))
 		{
-			Utilities::FileNode* engineAssets = engineTree.GetNode(PathManager::GetEngineAssetsPath());
+			const Utilities::FileNode* engineAssets = engineTree.GetNode(PathManager::GetEngineAssetsPath());
 			DrawAssetHierachyEntry(engineAssets);
 			ImGui::TreePop();
 		}
@@ -117,7 +117,7 @@ namespace Eclipse::Editor
 		ImGui::EndChild();
 	}
 
-	void AssetWindow::DrawAssetHierachyEntry(Utilities::FileNode* node)
+	void AssetWindow::DrawAssetHierachyEntry(const Utilities::FileNode* node)
 	{
 		namespace fs = std::filesystem;
 

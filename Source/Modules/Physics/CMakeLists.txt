@@ -10,4 +10,4 @@ target_link_libraries(Physics PUBLIC
     box2d
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

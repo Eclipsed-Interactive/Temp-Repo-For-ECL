@@ -4,19 +4,32 @@ function(GenerateExecutable)
     set(ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
 
     file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
-        "${ROOT}/*.*"
+        "${ROOT}/${TARGET_NAME}/*.*"
     )
 
-    add_executable(${TARGET_NAME} WIN32 ${SOURCES})
+    file(GLOB_RECURSE MAIN CONFIGURE_DEPENDS
+        "${ROOT}/main.cpp"
+    )
+
+    add_executable(${TARGET_NAME} WIN32 
+        ${SOURCES} 
+        ${MAIN} 
+    )
 
     target_sources(${TARGET_NAME}
         PRIVATE
             ${SOURCES}
+            ${MAIN} 
+    )
+
+    source_group(
+        TREE "${ROOT}/${TARGET_NAME}"
+        FILES ${SOURCES}
     )
 
     source_group(
         TREE "${ROOT}"
-        FILES ${SOURCES}
+        FILES ${MAIN}
     )
 
     target_include_directories(${TARGET_NAME}

@@ -50,7 +50,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Source/Externals/steamsdk/CMakeLists.txt"
     add_compile_definitions(STEAMSDK_PRESENT)
 endif()
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Core)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Core)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Assets)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Audio)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Source/Modules/Input)

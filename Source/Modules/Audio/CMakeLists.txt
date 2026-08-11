@@ -11,4 +11,4 @@ target_link_libraries(Audio
         Core
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

@@ -14,4 +14,4 @@ target_link_libraries(Networking PUBLIC
         "wininet.lib"
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

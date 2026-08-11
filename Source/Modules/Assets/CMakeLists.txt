@@ -12,4 +12,4 @@ target_link_libraries(Assets PUBLIC
     FreeType
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

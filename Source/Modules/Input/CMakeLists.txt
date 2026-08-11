@@ -10,4 +10,4 @@ target_link_libraries(Input PUBLIC
     OpenGL
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

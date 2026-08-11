@@ -9,4 +9,4 @@ target_link_libraries(ECS PUBLIC
     Core
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

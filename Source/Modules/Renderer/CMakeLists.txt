@@ -11,4 +11,4 @@ target_link_libraries(Renderer PUBLIC
     stb_image
 )
 
-SetFolder("Engine/Modules")
+SetFolder("Modules")

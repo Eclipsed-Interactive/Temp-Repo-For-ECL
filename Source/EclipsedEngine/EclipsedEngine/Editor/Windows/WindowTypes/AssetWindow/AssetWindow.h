@@ -24,7 +24,7 @@ namespace Eclipse::Editor
 
 		void DrawAssetView();
 		void DrawAssetHierachy();
-		void DrawAssetHierachyEntry(Utilities::FileNode* node);
+		void DrawAssetHierachyEntry(const Utilities::FileNode* node);
 
 
 		void OpenFile(const Utilities::FileInfo& fifo);
@@ -51,8 +51,8 @@ namespace Eclipse::Editor
 		Utilities::DirectoryTree dirTree;
 		Utilities::DirectoryTree engineTree;
 
-		Utilities::FileNode* Active_View_Node;
-		Utilities::FileNode* Active_Hierarchy_Node;
+		Utilities::FileNode const* Active_View_Node;
+		Utilities::FileNode const* Active_Hierarchy_Node;
 
 		AssetWindowContextMenu ctxMenu{};
 
