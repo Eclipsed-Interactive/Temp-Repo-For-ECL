@@ -1,9 +1,4 @@
-#include "pch.h"
-
 #include "PathManager.h"
-
-#include "Core/Files/FileUtilities.h"
-
 #include <iostream>
 
 namespace Eclipse
@@ -12,13 +7,9 @@ namespace Eclipse
 	{
 		namespace fs = std::filesystem;
 
-
 		engineSourceRoot = fs::current_path();
 		projectRoot = fs::absolute(projectPath);
 	}
-
-
-
 
 	bool PathManager::ProjectSet()
 	{

@@ -5,6 +5,8 @@
 
 namespace Eclipse::Core
 {
+	class IPlugin;
+
 	typedef Eclipse::Core::IPlugin* (*CreatePluginFunc)();
 	typedef void (*DestroyPluginFunc)(Eclipse::Core::IPlugin* plugin);
 

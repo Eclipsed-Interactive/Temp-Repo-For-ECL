@@ -34,6 +34,7 @@ function(CreateProject TYPE)
 
     file(GLOB_RECURSE CORE_SOURCES CONFIGURE_DEPENDS
         "${ROOT}/${TARGET_NAME}.Core.hpp"
+        "${ROOT}/${TARGET_NAME}.pch.h"
     )
 
     file(GLOB_RECURSE _SOURCES CONFIGURE_DEPENDS

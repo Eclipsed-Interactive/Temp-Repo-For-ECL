@@ -37,7 +37,7 @@ namespace Eclipse
        if (!myIsPlaying || !mySpriteRenderer)
            return;
 
-       myTimeAccumulator += Time::GetDeltaTime();
+       //myTimeAccumulator += Time::GetDeltaTime();
 
        if (myTimeAccumulator >= myTimePerFrame)
        {

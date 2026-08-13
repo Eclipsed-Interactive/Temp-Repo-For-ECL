@@ -38,31 +38,31 @@ std::string GetName() {
 void Eclipse::ComponentForcelink::LinkComponents()
 {
 	
-//	COMP_REG(Transform2D);
-//	COMP_REG(BoxCollider2D);
-//	COMP_REG(CapsuleCollider2D);
-//	COMP_REG(CircleCollider2D);
-//	COMP_REG(PolygonCollider2D);
-//	COMP_REG(RigidBody2D);
-//	
-//	COMP_REG(Camera);
-//	COMP_REG(SpriteRenderer2D);
-//	COMP_REG(SpriteSheetAnimator2D);
-//	COMP_REG(TextRenderer);
-//	
-//	COMP_REG(Button);
-//	COMP_REG(Canvas);
-//	COMP_REG(RectTransform);
-//	COMP_REG(UIImage);
-//
-//	COMP_REG(AudioEmitter);
-//	COMP_REG(AudioBank);
-//	COMP_REG(AudioEvent);
-//	COMP_REG(AudioListener);
-//	
-//	COMP_REG(PlayerSpawner);
+	COMP_REG(Transform2D);
+	COMP_REG(BoxCollider2D);
+	COMP_REG(CapsuleCollider2D);
+	COMP_REG(CircleCollider2D);
+	COMP_REG(PolygonCollider2D);
+	COMP_REG(RigidBody2D);
+	
+	COMP_REG(Camera);
+	COMP_REG(SpriteRenderer2D);
+	COMP_REG(SpriteSheetAnimator2D);
+	COMP_REG(TextRenderer);
+	
+	COMP_REG(Button);
+	COMP_REG(Canvas);
+	COMP_REG(RectTransform);
+	COMP_REG(UIImage);
+
+	COMP_REG(AudioEmitter);
+	COMP_REG(AudioBank);
+	COMP_REG(AudioEvent);
+	COMP_REG(AudioListener);
+	
+	//COMP_REG(PlayerSpawner);
 //
 //#ifndef ECL_EDITOR
-//	RegisterComponents();
+	//RegisterComponents();
 //#endif
 }

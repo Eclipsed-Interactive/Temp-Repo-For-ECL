@@ -5,7 +5,7 @@
 
 namespace Eclipse::Settings
 {
-	struct PhysicsSettings : public BaseSettings<PhysicsSettings>
+	struct PhysicsSettings final : public BaseSettings<PhysicsSettings>
 	{
 		#define MAX_LAYERS 16
 

@@ -27,9 +27,9 @@ namespace Eclipse
         UIWindowFlags_NoNavFocus = 1 << 17,  // No focusing toward this window with keyboard/gamepad navigation (e.g. skipped by Ctrl+Tab)
         UIWindowFlags_UnsavedDocument = 1 << 18,  // Display a dot next to the title. When used in a tab/docking context, tab is selected when clicking the X + closure is not assumed (will wait for user to stop submitting the tab). Otherwise closure is assumed when pressing the X, so if you keep submitting the tab may reappear at end of tab bar.
         UIWindowFlags_NoDocking = 1 << 19,  // Disable docking of this window
-        UIWindowFlags_NoNav = ImGuiWindowFlags_NoNavInputs | ImGuiWindowFlags_NoNavFocus,
-        UIWindowFlags_NoDecoration = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse,
-        UIWindowFlags_NoInputs = ImGuiWindowFlags_NoMouseInputs | ImGuiWindowFlags_NoNavInputs | ImGuiWindowFlags_NoNavFocus,
+        UIWindowFlags_NoNav = UIWindowFlags_NoNavInputs | UIWindowFlags_NoNavFocus,
+        UIWindowFlags_NoDecoration = UIWindowFlags_NoTitleBar | UIWindowFlags_NoResize | UIWindowFlags_NoScrollbar | UIWindowFlags_NoCollapse,
+        UIWindowFlags_NoInputs = UIWindowFlags_NoMouseInputs | UIWindowFlags_NoNavInputs | UIWindowFlags_NoNavFocus,
     };
 
     typedef int UIWindowFlags;       // -> enum UIWindowFlags_     // Flags: for Begin(), BeginChild()

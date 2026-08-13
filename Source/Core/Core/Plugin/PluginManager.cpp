@@ -7,8 +7,6 @@
 
 namespace Eclipse::Core
 {
-	std::unordered_map<std::string, Plugin> PluginManager::loadedPlugins;
-
 	void PluginManager::LoadPlugin(const char* pluginPath)
 	{
 		std::string path = std::string(pluginPath);
@@ -22,13 +20,14 @@ namespace Eclipse::Core
 	void PluginManager::CompileAndReloadPlugin(const char* pluginPath, const char* pluginSource)
 	{
 		const bool compilingSucceded = CompilePlugin(pluginSource);
-		if()
 	}
 
 	bool PluginManager::CompilePlugin(const char* pluginSource)
 	{
 		// Compile the plugin
 		// return true if succeded
+
+		return false;
 	}
 
 	void PluginManager::CompileAndLoadPlugin(const char* pluginPath, const char* pluginSource)

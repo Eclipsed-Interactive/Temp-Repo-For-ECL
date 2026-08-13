@@ -10,15 +10,15 @@ namespace Eclipse::Core
 	class PluginManager final
 	{
 	public:
-		static void CompileAndLoadPlugin(const char* pluginPath, const char* pluginSource);
-		static void ReloadPlugin(const char* pluginPath);
-		static void LoadPlugin(const char* pluginPath);
-		static void CompileAndReloadPlugin(const char* pluginPath, const char* pluginSource);
+		void CompileAndLoadPlugin(const char* pluginPath, const char* pluginSource);
+		void ReloadPlugin(const char* pluginPath);
+		void LoadPlugin(const char* pluginPath);
+		void CompileAndReloadPlugin(const char* pluginPath, const char* pluginSource);
 
 	private:
-		static bool CompilePlugin(const char* pluginSource);
+		bool CompilePlugin(const char* pluginSource);
 
 	private:
-		static std::unordered_map<std::string, Plugin> loadedPlugins;
+		std::unordered_map<std::string, Plugin> loadedPlugins;
 	};
 }

@@ -138,7 +138,7 @@ namespace Eclipse::Replication
             server->Update();
 
         static float timer = 0.f;
-        timer -= Time::GetDeltaTime();
+        //timer -= Time::GetDeltaTime();
 
         if (timer <= 0)
         {

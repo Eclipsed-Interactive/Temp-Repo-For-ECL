@@ -6,6 +6,9 @@ namespace Eclipse::Assets
 {
 	std::vector<FileEntry> FileSystem::ScanDirectory(const std::filesystem::path& root)
 	{
+		if (!std::filesystem::exists(root))
+			return {};
+
 		std::vector<FileEntry> result;
 
 		for (const auto& entry : std::filesystem::recursive_directory_iterator(root))

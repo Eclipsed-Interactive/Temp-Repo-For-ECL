@@ -99,13 +99,13 @@ void Eclipse::Editor::LayoutManager::SaveAsNewLayout(std::function<void()> callb
 
 void Eclipse::Editor::LayoutManager::SaveLayout(const std::string& name)
 {
-	std::vector<Settings::OpenEditorWindows> openWindows = Settings::EditorSettings::GetCurrentlyOpenEditorWindows();
+	std::vector<Settings::EditorSettings::OpenEditorWindows> openWindows = Settings::EditorSettings::GetCurrentlyOpenEditorWindows();
 
 	rapidjson::Document d;
 	d.SetObject();
 
 	rapidjson::Value layoutList(rapidjson::kArrayType);
-	for (const Settings::OpenEditorWindows& window : openWindows)
+	for (const Settings::EditorSettings::OpenEditorWindows& window : openWindows)
 	{
 		rapidjson::Value val(rapidjson::kObjectType);
 		val.AddMember("id", window.ID, d.GetAllocator());
